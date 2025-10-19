@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AureDaily - Article Magazine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #2d2d2d;
+            background: #fafaf8;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #f4e4c1 0%, #e8d5b7 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid #d4af37;
+        }
+        
+        .magazine-name {
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #8b7355;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .article-title {
+            font-size: 48px;
+            color: #3d2817;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .article-subtitle {
+            font-size: 20px;
+            color: #6b4423;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .article-meta {
+            font-size: 12px;
+            color: #8b7355;
+            letter-spacing: 1px;
+        }
+        
+        /* HERO IMAGE */
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #ffd89b 0%, #fff5d6 50%, #ffe6b3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-image::before {
+            content: "🌅";
+            font-size: 200px;
+            position: absolute;
+        }
+        
+        .hero-caption {
+            text-align: center;
+            font-size: 12px;
+            color: #8b7355;
+            padding: 15px;
+            background: #f4e4c1;
+            border-top: 1px solid #e8d5b7;
+            letter-spacing: 1px;
+        }
+        
+        /* CONTENT */
+        .content {
+            padding: 60px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-box {
+            background: #fdf8f3;
+            border-left: 4px solid #d4af37;
+            padding: 25px;
+            margin-bottom: 40px;
+            font-size: 16px;
+            font-style: italic;
+            color: #5d4037;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            color: #3d2817;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-bottom: 2px solid #f4e4c1;
+            padding-bottom: 10px;
+        }
+        
+        .paragraph {
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.9;
+        }
+        
+        .highlight {
+            background: #fff9e6;
+            padding: 0 4px;
+            color: #d4af37;
+            font-weight: 600;
+        }
+        
+        /* IMAGE BLOCKS */
+        .image-block {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #fff5d6 0%, #ffe6b3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+        
+        .image-caption {
+            font-size: 12px;
+            color: #8b7355;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        /* QUOTE */
+        .quote {
+            background: #fdf8f3;
+            border-left: 4px solid #d4af37;
+            padding: 30px;
+            margin: 40px 0;
+            font-size: 18px;
+            color: #5d4037;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        .quote-author {
+            font-size: 14px;
+            color: #8b7355;
+            margin-top: 15px;
+            font-style: normal;
+        }
+        
+        /* FEATURE BOX */
+        .feature-box {
+            background: #fdf8f3;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+            border: 1px solid #e8d5b7;
+        }
+        
+        .feature-box h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            color: #5d4037;
+            border-bottom: 1px solid #e8d5b7;
+            font-size: 14px;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-list li::before {
+            content: "✨ ";
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        /* CTA */
+        .cta-box {
+            background: linear-gradient(135deg, #d4af37 0%, #e6c200 100%);
+            padding: 40px;
+            text-align: center;
+            margin: 50px 0;
+            border-radius: 8px;
+        }
+        
+        .cta-box h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-box p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .cta-button {
+            background: white;
+            color: #d4af37;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: #3d2817;
+            color: #f4e4c1;
+            padding: 30px;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 32px;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .hero-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="magazine-name">FEMINA • BIEN-ÊTRE • TENDANCES</div>
+            <h1 class="article-title">AureDaily<br>La Communauté Qui Transforme les Matins</h1>
+            <p class="article-subtitle">Comment des femmes ont trouvé la force de commencer leur journée autrement</p>
+            <div class="article-meta">PAR AUREDAILY • NOVEMBRE 2025</div>
+        </div>
+        
+        <!-- HERO IMAGE -->
+        <div class="hero-image"></div>
+        <div class="hero-caption">À chaque aube, quelque chose de magique commence.</div>
+        
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- INTRO -->
+            <div class="intro-box">
+                "Aucune femme ne devrait commencer sa journée seule." C'est le manifeste d'AureDaily, une communauté Telegram confidentielle qui redéfinit l'intimité numérique. Et ça marche.
+            </div>
+            
+            <!-- SECTION 1 -->
+            <h2 class="section-title">L'Heure de la Vérité</h2>
+            
+            <p class="paragraph">
+                Leila se réveille tôt. Elle n'a pas d'alarme. Son corps sait. Dans quelques secondes, elle ouvrira Telegram. Elle rejoindra les femmes qui se retrouvent chaque matin dans AureDaily.
+            </p>
+            
+            <p class="paragraph">
+                "Ce premier geste change tout", explique Leila, qui préfère rester anonyme. "Avant, je me réveillais terrifiée. Les pensées négatives arrivaient avant même que je n'ouvre les yeux. Maintenant, j'ouvre AureDaily et je ne suis plus seule."
+            </p>
+            
+            <p class="paragraph">
+                Voilà le concept : chaque matin, une question. Simple. Parfois difficile. "Quel est ton plus grand défi ce matin ?" "Quelle victoire célèbres-tu ?" "Qu'est-ce que tu aimerais lâcher prise ?"
+            </p>
+            
+            <p class="paragraph">
+                Les femmes répondent. Anonymement. Et quelque chose de rare se produit : <span class="highlight">elles se reconnaissent les unes les autres</span>. Non pas par leurs visages ou leurs noms, mais par leurs peurs.
+            </p>
+            
+            <!-- IMAGE 1 -->
+            <div class="image-block">
+                <div class="image-placeholder">💬</div>
+                <p class="image-caption">Les prompts quotidiens sont simples mais profonds. Ils reconnectent à l'essentiel.</p>
+            </div>
+            
+            <!-- SECTION 2 -->
+            <h2 class="section-title">L'Anonymat Comme Libération</h2>
+            
+            <p class="paragraph">
+                Dans un monde où tout s'expose, <span class="highlight">AureDaily propose l'inverse : disparaître pour être entendue</span>.
+            </p>
+            
+            <p class="paragraph">
+                "L'anonymat n'est pas une cachette", explique la fondatrice d'AureDaily. "C'est une permission. Une femme peut dire 'je suis terrorisée' sans crainte que quelqu'un ne le répète à son patron, sa mère, ou son ex. C'est là que commence la vraie parole."
+            </p>
+            
+            <p class="paragraph">
+                Amira, mère, ne l'aurait jamais avoué publiquement : "Je suis en dépression post-partum." Ici, elle l'a écrit. Et trois autres femmes ont répondu : "Moi aussi. Tu n'es pas seule."
+            </p>
+            
+            <p class="paragraph">
+                C'est une chimie rare en 2025. Les réseaux sociaux nous ont conditionné à performer. AureDaily propose le contraire : être vrai.
+            </p>
+            
+            <!-- QUOTE -->
+            <div class="quote">
+                "Avant AureDaily, je pensais que j'étais la seule à avoir peur en me réveillant. Maintenant je sais que nous sommes nombreuses. Ça change tout."
+                <div class="quote-author">— Hana, Casablanca</div>
+            </div>
+            
+            <!-- IMAGE 2 -->
+            <div class="image-block">
+                <div class="image-placeholder">🧘‍♀️</div>
+                <p class="image-caption">Au-delà des prompts : exercices de respiration, journaling, méditations guidées.</p>
+            </div>
+            
+            <!-- SECTION 3 -->
+            <h2 class="section-title">Au-Delà des Prompts : Une Architecture de la Bienveillance</h2>
+            
+            <p class="paragraph">
+                AureDaily ne s'arrête pas à une question quotidienne. C'est toute une <span class="highlight">infrastructure de la douceur</span>.
+            </p>
+            
+            <div class="feature-box">
+                <h3>Chaque Semaine</h3>
+                <ul class="feature-list">
+                    <li><strong>Exercices quotidiens</strong> : respiration, journaling, affirmation, mouvements du corps</li>
+                    <li><strong>Ressources</strong> : articles sur l'anxiété, le pouvoir du non, la solitude</li>
+                    <li><strong>Modération bienveillante</strong> : aucun jugement, juste présence</li>
+                    <li><strong>Groupe privé optionnel</strong> : pour celles qui veulent vraie interaction</li>
+                </ul>
+            </div>
+            
+            <p class="paragraph">
+                Mais le plus important ? <span class="highlight">La fondatrice est là vraiment</span>. Pas juste un bot. Une femme. Elle publie, elle modère, elle partage ses propres doutes.
+            </p>
+            
+            <p class="paragraph">
+                "Beaucoup de communautés 'femmes' tournent autour d'une guru", analyse la fondatrice. "Je refuse. Je suis une facilitatrice. Je doute aussi. Et c'est ça qui crée la vraie égalité."
+            </p>
+            
+            <!-- SECTION 4 -->
+            <h2 class="section-title">Pourquoi Ça Marche (Quand D'autres Échouent)</h2>
+            
+            <p class="paragraph">
+                Il existe déjà des apps de méditation. Des communautés Facebook fermées. Des groupes Discord de femmes. Pourquoi AureDaily différent ?
+            </p>
+            
+            <p class="paragraph">
+                <strong>L'heure.</strong> Au matin, c'est avant tout. Avant les messages, les exigences, les autres. C'est quand tu es encore avec toi-même.
+            </p>
+            
+            <p class="paragraph">
+                <strong>L'absence de performance.</strong> Pas de likes. Pas de stats. Pas de "meilleure histoire de la semaine". Juste toi et ton émotion, légitimes.
+            </p>
+            
+            <p class="paragraph">
+                <strong>La vraie modération.</strong> Les communautés dérivent souvent vers le chaos ou la censure. Ici, c'est clair : bienveillance, anonymat, confidentialité. Point.
+            </p>
+            
+            <p class="paragraph">
+                <strong>L'engagement réel.</strong> La fondatrice dit "je fais ça avec intégrité". Pas de promesse éternelle vague. Juste honnêteté.
+            </p>
+            
+            <!-- IMAGE 3 -->
+            <div class="image-block">
+                <div class="image-placeholder">💛</div>
+                <p class="image-caption">Des femmes de tous horizons. Une seule mission : aucune femme ne commence seule.</p>
+            </div>
+            
+            <!-- SECTION 5 -->
+            <h2 class="section-title">Les Témoignages Qui Changent Tout</h2>
+            
+            <p class="paragraph">
+                "Avant AureDaily, mon matin ressemblait à ça : réveil, panique, téléphone, catastrophe. En quelques minutes, mon cortisol était au maximum." <br><br>
+                <em>— Fatima, Dubaï</em>
+            </p>
+            
+            <p class="paragraph">
+                "Maintenant : réveil, AureDaily, exercice de respiration, café. Je respire. Puis seulement je regarde mes messages. Ma journée change."
+            </p>
+            
+            <p class="paragraph">
+                Autre témoignage : "Je n'avais jamais écrit mes peurs avant AureDaily. L'exercice de journaling m'a sauvée. Plusieurs fois. Littéralement."<br><br>
+                <em>— Amina, Tunis</em>
+            </p>
+            
+            <p class="paragraph">
+                Mais le plus puissant : "Vous m'avez rappelée que je n'étais pas folle. Juste seule. Et maintenant, je ne le suis plus."<br><br>
+                <em>— Sophie, Lyon</em>
+            </p>
+            
+            <!-- CTA BOX -->
+            <div class="cta-box">
+                <h3>Rejoins AureDaily</h3>
+                <p>Des femmes commencent leur journée différemment. Chaque matin. Ensemble. Anonymement.</p>
+                <a href="https://t.me/+o2UujSLgeSBlMjA0" class="cta-button">Demander l'Accès au Groupe Privé</a>
+            </div>
+            
+            <!-- SECTION 6 -->
+            <h2 class="section-title">Ce Qui Vient Ensuite</h2>
+            
+            <p class="paragraph">
+                AureDaily reste intentionnellement petit. Parce que <span class="highlight">la vraie communauté ne peut pas être massive</span>.
+            </p>
+            
+            <p class="paragraph">
+                Les plans : rester fidèle. Approfondir. Peut-être un jour, documenter les histoires. Créer un livre. Mais d'abord, continuer ce qui marche.
+            </p>
+            
+            <p class="paragraph">
+                "Et si ça devait grandir vraiment ? Je passe la main à quelqu'une d'autre qui le fera avec la même intégrité. Mais AureDaily ne sera jamais une startup unicorn. C'est volontaire."
+            </p>
+            
+            <p class="paragraph">
+                Demain matin, des femmes se réveilleront. Elles ouvriront Telegram. Elles ne seront pas seules.
+            </p>
+            
+            <p class="paragraph" style="text-align: center; font-style: italic; margin-top: 40px;">
+                "Aucune femme ne devrait commencer sa journée seule." <br>
+                — AureDaily
+            </p>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+        FEMINA • NOVEMBRE 2025 | © Tous droits réservés | Retrouvez AureDaily sur @AureDaily (Telegram)
+    </div>
+</body>
+</html>
